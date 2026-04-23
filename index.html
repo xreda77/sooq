@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>السوق المفتوح - لبيع وشراء كل شيء</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- شريط علوي -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-links">
+                <a href="#"><i class="fas fa-globe"></i> تغيير اللغة</a>
+                <a href="#"><i class="fas fa-map-marker-alt"></i> الموقع</a>
+            </div>
+            <div class="welcome-msg">
+                مرحباً بك في السوق المفتوح!
+            </div>
+        </div>
+    </div>
+
+    <!-- الرأس الرئيسي -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-store"></i>
+                <span>السوق المفتوح</span>
+            </div>
+            
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="ابحث عن سيارات، عقارات، موبايلات، وظائف...">
+                <button class="search-btn" onclick="performSearch()">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+
+            <div class="header-actions">
+                <button class="btn-secondary" onclick="showLoginModal()">
+                    <i class="fas fa-user"></i>
+                    تسجيل الدخول
+                </button>
+                <button class="btn-primary" onclick="addNewAd()">
+                    <i class="fas fa-plus-circle"></i>
+                    أضف إعلانك
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- شريط التنقل -->
+    <nav class="main-nav">
+        <div class="container">
+            <ul class="nav-menu">
+                <li><a href="#" class="active" onclick="filterCategory('all')">
+                    <i class="fas fa-th-large"></i> الكل
+                </a></li>
+                <li><a href="#" onclick="filterCategory('vehicles')">
+                    <i class="fas fa-car"></i> سيارات
+                </a></li>
+                <li><a href="#" onclick="filterCategory('real-estate')">
+                    <i class="fas fa-home"></i> عقارات
+                </a></li>
+                <li><a href="#" onclick="filterCategory('electronics')">
+                    <i class="fas fa-mobile-alt"></i> موبايلات وإلكترونيات
+                </a></li>
+                <li><a href="#" onclick="filterCategory('furniture')">
+                    <i class="fas fa-couch"></i> أثاث منزلي
+                </a></li>
+                <li><a href="#" onclick="filterCategory('jobs')">
+                    <i class="fas fa-briefcase"></i> وظائف
+                </a></li>
+                <li><a href="#" onclick="filterCategory('fashion')">
+                    <i class="fas fa-tshirt"></i> أزياء وموضة
+                </a></li>
+                <li><a href="#" onclick="filterCategory('sports')">
+                    <i class="fas fa-futbol"></i> رياضة ولياقة
+                </a></li>
+                <li><a href="#" onclick="filterCategory('pets')">
+                    <i class="fas fa-paw"></i> حيوانات
+                </a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="main-content">
+        <!-- قسم البانر -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>بيع واشتري كل شيء من مكان واحد</h1>
+                    <p>أكثر من مليون إعلان منتشر في مختلف المجالات</p>
+                    <div class="hero-buttons">
+                        <button class="btn-large btn-primary" onclick="addNewAd()">
+                            <i class="fas fa-plus"></i>
+                            أضف إعلانك المجاني
+                        </button>
+                        <button class="btn-large btn-secondary" onclick="showCategories()">
+                            <i class="fas fa-th"></i>
+                            تصفح الأقسام
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم التصنيفات -->
+        <section class="categories-section">
+            <div class="container">
+                <h2 class="section-title">الأقسام الرئيسية</h2>
+                <div class="categories-grid">
+                    <div class="category-card" onclick="filterCategory('vehicles')">
+                        <div class="category-icon" style="background: #e74c3c;">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <h3>سيارات</h3>
+                        <p>سيارات للبيع، للإيجار، قطع غيار</p>
+                        <span class="ad-count">15,432 إعلان</span>
+                    </div>
+
+                    <div class="category-card" onclick="filterCategory('real-estate')">
+                        <div class="category-icon" style="background: #3498db;">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <h3>عقارات</h3>
+                        <p>شقق، فلل، أراضي، محلات تجارية</p>
+                        <span class="ad-count">8,921 إعلان</span>
+                    </div>
+
+                    <div class="category-card" onclick="filterCategory('electronics')">
+                        <div class="category-icon" style="background: #9b59b6;">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>موبايلات</h3>
+                        <p>هواتف ذكية، اكسسوارات، صيانة</p>
+                        <span class="ad-count">12,654 إعلان</span>
+                    </div>
+
+                    <div class="category-card" onclick="filterCategory('electronics')">
+                        <div class="category-icon" style="background: #f39c12;">
+                            <i class="fas fa-laptop"></i>
+                        </div>
+                        <h3>إلكترونيات</h3>
+                        <p>كمبيوتر، لابتوب، كاميرات، ألعاب</p>
+                        <span class="ad-count">6,789 إعلان</span>
+                    </div>
+
+                    <div class="category-card" onclick="filterCategory('furniture')">
+                        <div class="category-icon" style="background: #27ae60;">
+                            <i class="fas fa-couch"></i>
+                        </div>
+                        <h3>أثاث منزلي</h3>
+                        <p>غرف نوم، مطابخ، ديكور، أدوات منزلية</p>
+                        <span class="ad-count">4,567 إعلان</span>
+                    </div>
+
+                    <div class="category-card" onclick="filterCategory('jobs')">
+                        <div class="category-icon" style="background: #e67e22;">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <h3>وظائف</h3>
+                        <p>وظائف شاغرة، سيرة ذاتية، خدمات</p>
+                        <span class="ad-count">3,890 إعلان</span>
+                    </div>
+
+                    <div class="category-card" onclick="filterCategory('fashion')">
+                        <div class="category-icon" style="background: #e91e63;">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
+                        <h3>أزياء</h3>
+                        <p>ملابس، أحذية، إكسسوارات، عطور</p>
+                        <span class="ad-count">9,234 إعلان</span>
+                    </div>
+
+                    <div class="category-card" onclick="filterCategory('sports')">
+                        <div class="category-icon" style="background: #00bcd4;">
+                            <i class="fas fa-futbol"></i>
+                        </div>
+                        <h3>رياضة</h3>
+                        <p>معدات رياضية، صالات، مغامرات</p>
+                        <span class="ad-count">2,456 إعلان</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم أحدث الإعلانات -->
+        <section class="listings-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">أحدث الإعلانات</h2>
+                    <div class="view-options">
+                        <button class="view-btn active" onclick="setViewMode('grid')">
+                            <i class="fas fa-th"></i>
+                        </button>
+                        <button class="view-btn" onclick="setViewMode('list')">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- فلاتر البحث -->
+                <div class="filters-bar">
+                    <select class="filter-select" id="cityFilter" onchange="applyFilters()">
+                        <option value="">كل المدن</option>
+                        <option value="رياض">الرياض</option>
+                        <option value="جدة">جدة</option>
+                        <option value="مكة">مكة</option>
+                        <option value="دبي">دبي</option>
+                        <option value="أبوظبي">أبوظبي</option>
+                        <option value="القاهرة">القاهرة</option>
+                    </select>
+
+                    <select class="filter-select" id="priceFilter" onchange="applyFilters()">
+                        <option value="">السعر</option>
+                        <option value="0-1000">أقل من 1000</option>
+                        <option value="1000-5000">1000 - 5000</option>
+                        <option value="5000-10000">5000 - 10000</option>
+                        <option value="10000+">أكثر من 10000</option>
+                    </select>
+
+                    <select class="filter-select" id="conditionFilter" onchange="applyFilters()">
+                        <option value="">الحالة</option>
+                        <option value="new">جديد</option>
+                        <option value="used">مستعمل</option>
+                    </select>
+
+                    <button class="btn-reset" onclick="resetFilters()">
+                        <i class="fas fa-undo"></i>
+                        إعادة تعيين
+                    </button>
+                </div>
+
+                <!-- شبكة الإعلانات -->
+                <div class="listings-grid" id="listingsGrid">
+                    <!-- سيتم ملؤها بالJavaScript -->
+                </div>
+
+                <!-- زر تحميل المزيد -->
+                <div class="load-more-container">
+                    <button class="btn-load-more" onclick="loadMore()">
+                        <i class="fas fa-spinner"></i>
+                        تحميل المزيد
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم الإعلانات المميزة -->
+        <section class="featured-section">
+            <div class="container">
+                <h2 class="section-title">إعلانات مميزة</h2>
+                <div class="featured-grid" id="featuredGrid">
+                    <!-- سيتم ملؤها بالJavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم كيف يعمل -->
+        <section class="how-it-works">
+            <div class="container">
+                <h2 class="section-title">كيف يعمل الموقع</h2>
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <i class="fas fa-user-plus"></i>
+                        <h3>أنشئ حسابك</h3>
+                        <p>سجل في الموقع بخطوات بسيطة لتتمكن من إضافة إعلاناتك</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <i class="fas fa-camera"></i>
+                        <h3>أضف إعلانك</h3>
+                        <p>صور منتجك، اكتب تفاصيله، وحدد السعر المناسب</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <i class="fas fa-comments"></i>
+                        <h3>تواصل مع المشترين</h3>
+                        <p>استلم رسائل المهتمين وتواصل معهم مباشرة</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <i class="fas fa-handshake"></i>
+                        <h3>أتمم البيع</h3>
+                        <p>اتفق على السعر وطريقة الدفع واستلم ثمن منتجك</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- تذييل الصفحة -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-store"></i>
+                        <span>السوق المفتوح</span>
+                    </div>
+                    <p>أكبر منصة إعلانات مبوبة في المنطقة، نوفر لك منصة آمنة وسهلة للبيع والشراء</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>الأقسام الرئيسية</h4>
+                    <ul>
+                        <li><a href="#">سيارات</a></li>
+                        <li><a href="#">عقارات</a></li>
+                        <li><a href="#">موبايلات</a></li>
+                        <li><a href="#">وظائف</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>روابط مهمة</h4>
+                    <ul>
+                        <li><a href="#">من نحن</a></li>
+                        <li><a href="#">شروط الاستخدام</a></li>
+                        <li><a href="#">سياسة الخصوصية</a></li>
+                        <li><a href="#">مركز المساعدة</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>تواصل معنا</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-envelope"></i> support@opencooq.com</li>
+                        <li><i class="fas fa-phone"></i> 9200XXXXX</li>
+                        <li><i class="fas fa-map-marker-alt"></i> المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>جميع الحقوق محفوظة © 2025 السوق المفتوح</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- نموذج تسجيل الدخول -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>تسجيل الدخول</h2>
+                <button class="close-btn" onclick="closeLoginModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label>رقم الجوال أو البريد الإلكتروني</label>
+                        <input type="text" required placeholder="أدخل رقم الجوال أو البريد">
+                    </div>
+                    <div class="form-group">
+                        <label>كلمة المرور</label>
+                        <input type="password" required placeholder="أدخل كلمة المرور">
+                    </div>
+                    <div class="form-options">
+                        <label class="checkbox">
+                            <input type="checkbox">
+                            <span>تذكرني</span>
+                        </label>
+                        <a href="#">نسيت كلمة المرور؟</a>
+                    </div>
+                    <button type="submit" class="btn-submit">تسجيل الدخول</button>
+                </form>
+                <div class="social-login">
+                    <p>أو تسجيل الدخول عبر</p>
+                    <div class="social-buttons">
+                        <button class="btn-social google">
+                            <i class="fab fa-google"></i>
+                        </button>
+                        <button class="btn-social facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </button>
+                        <button class="btn-social apple">
+                            <i class="fab fa-apple"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="register-link">
+                    ليس لديك حساب؟ <a href="#" onclick="showRegisterModal()">سجل الآن</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html>
